@@ -5,11 +5,46 @@
 // CREATE THE FUNCTIONS BELOW
 
 // Document Ready Function. All of your jQuery should go in here. 
-$( document ).ready(function() {
+$(document).ready(function(){
   
+  $("input").keyup(function(event){
+    if (event.keyCode === 13){
+      $("#submit").click();
+    }
+  });
+    $('#clear').click(function(){
+      $("#result").html("");
+      $("#msg").val("");
+      
+    });
+  
+  $("#submit").click(function(){
+    var message = $("#msg").val().split(" ");
+    $("#msg").val("");
+    function meow(word){
+      var v = ["a", "e", "i", "o", "u"];
+      var firstChar = word.charAt(0);
+      if(v.includes(firstChar)){
+        return word + "meow ";
+      
+      }else{
+        // everything but first letter + first letter + meow
+        return word.slice(1) + word.slice(0,1) + "meow ";
+      }
+      
+    }
+    
+    
+  
+    var catMessage = " ";
+    for(var i = 0; i < message.length; i++){
+      catMessage += meow(message[i]);
+    }
+    
+    $("#result").html(catMessage);
 
-
-
+  });
+  
 });
 
 
@@ -23,5 +58,8 @@ $( document ).ready(function() {
 // Create the sentenceToPigLatin function that takes a sentence as a parameter
 	//Loops through all the words in the sentence and transforms each word
 	//It should return a transfromed sentance
+
+
+
 
 
